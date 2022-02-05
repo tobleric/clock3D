@@ -73,7 +73,7 @@ function setup() {
 
     //Erstelle Werte und Form Stundenkreis B
     push()
-    let hourBPosX = map(hourFact, -1, 1, width/2, width-100)
+    let hourBPosX = map(hourFact, -1, 1, width/2, width)
     translate(hourBPosX, 0, -100)
     torus(radius/2, hourSize, 50)
     pop()
