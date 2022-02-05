@@ -10,7 +10,7 @@ class Sphere {
     push()
     translate(this.x, this.y, this.z)
     texture(texStars)
-    sphere(30)
+    sphere(30, 200, 200)
     pop()
   }
 
@@ -48,10 +48,8 @@ function setup() {
     noStroke()
 
     /*Erstelle Radius für Stundekreis */
-    let diameter = width;
-    let radius = diameter/2;
     let hourSize = 2
-    let sekSize = 20
+    let torusSize = 200
 
     /*Generiere Licht*/
     pointLight(255, 255, 255, 200, -200, 100)
@@ -65,24 +63,28 @@ function setup() {
     //Erstelle Werte und Form Stundenkreis A
     push()
     let hourFact = cos((b) + 1) / 2
-    let hourAPosX = map(hourFact, 1, -1, -width/4, width/4)
+    let hourAPosX = map(hourFact, 1, -1, -torusSize, torusSize)
     translate(hourAPosX, 0, 0)
-    torus(radius/2, hourSize, 170)
-    // console.log(hourFact)
+    torus(torusSize, hourSize, 170)
     pop()
 
     //Erstelle Werte und Form Stundenkreis B
     push()
-    let hourBPosX = map(hourFact, -1, 1, -width/4, width/4)
+    let hourBPosX = map(hourFact, -1, 1, -torusSize, torusSize)
+    if (hourBPosX <= 1 || hourBPosX >= width) {
+      pointLight(255, 0, 0, 600, 0, 600)
+      pointLight(0, 250, 255, -600, 0, -600)
+      fill(25, 250, 255)
+    } 
     translate(hourBPosX, 0, -100)
-    torus(radius/2, hourSize, 150)
+    torus(torusSize, hourSize, 150)
     pop()
 
     //Erstelle Werte und Form Sekundenkreis
     push()
     translate(hourAPosX, 0, 0)
-    let sekPosY = sin(a) * radius / 2
-    let sekPosX = cos(a) * radius / 2
+    let sekPosY = sin(a) * torusSize 
+    let sekPosX = cos(a) * torusSize
 
     push()
     translate(sekPosX, sekPosY, 0)
@@ -90,7 +92,7 @@ function setup() {
 
     rotateY(frameCount/1.6666666667)
 
-    ambientMaterial(255)
+    texture(texStars)
     torus(40)
     /*Torus Light */
   
@@ -107,7 +109,10 @@ function setup() {
     for (let i = 0; i < stars.length; i++) {
       stars[i].show()
     }
-  
 
+    /*Color changer*/
+    function colorChange() {
+      // console.log(hourBPosX)
+    }
   }
 
