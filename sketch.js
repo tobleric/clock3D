@@ -10,7 +10,7 @@ class Sphere {
     push()
     translate(this.x, this.y, this.z)
     texture(texStars)
-    sphere(20)
+    sphere(30)
     pop()
   }
 
@@ -45,7 +45,6 @@ function setup() {
   function draw() {
     background(0)
     // orbitControl()
-    translate(-windowWidth/2, 0);
     noStroke()
 
     /*Erstelle Radius für Stundekreis */
@@ -65,17 +64,18 @@ function setup() {
 
     //Erstelle Werte und Form Stundenkreis A
     push()
-    let hourFact = cos(b)
-    let hourAPosX = map(hourFact, 1, -1, width/4, width/2)
+    let hourFact = cos((b) + 1) / 2
+    let hourAPosX = map(hourFact, 1, -1, -width/4, width/4)
     translate(hourAPosX, 0, 0)
-    torus(radius/2, hourSize, 70)
+    torus(radius/2, hourSize, 170)
+    // console.log(hourFact)
     pop()
 
     //Erstelle Werte und Form Stundenkreis B
     push()
-    let hourBPosX = map(hourFact, -1, 1, width/2, width)
+    let hourBPosX = map(hourFact, -1, 1, -width/4, width/4)
     translate(hourBPosX, 0, -100)
-    torus(radius/2, hourSize, 50)
+    torus(radius/2, hourSize, 150)
     pop()
 
     //Erstelle Werte und Form Sekundenkreis
