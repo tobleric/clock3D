@@ -74,7 +74,7 @@ function setup() {
     if (hourBPosX <= 1 || hourBPosX >= width) {
       pointLight(255, 0, 0, 600, 0, 600)
       pointLight(0, 250, 255, -600, 0, -600)
-      fill(25, 250, 255)
+      fill(24, 250, 255)
     } 
     translate(hourBPosX, 0, -100)
     torus(torusSize, hourSize, 150)
